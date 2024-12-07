@@ -352,6 +352,10 @@ class Checkers:
         self._turn = turn
         self._last_moved_piece = last_moved_piece
 
+    def getTurn(self):
+        return self.turn
+
+
 
 if __name__ == '__main__':
     ch = Checkers(empty_corner=True)

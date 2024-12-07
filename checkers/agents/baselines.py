@@ -15,6 +15,8 @@ class RandomPlayer(Player):
         state = (board, self.color, last_moved_piece)
         self.simulator.restore_state(state)
         legal_moves = self.simulator.legal_moves()
+        if not legal_moves:
+            return None
         move = self.random.choice(np.asarray(legal_moves, dtype='int,int'))
         return move
 
