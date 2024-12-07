@@ -78,35 +78,13 @@ def incremental_training(value_model, iterations=10, games_per_iter=100):
 
 
 def generate_next_states(state):
-    """
-    Mock function to generate possible next states.
-    Replace with game-specific logic to simulate legal moves.
 
-    Args:
-        state: The current state as a numeric array.
-
-    Returns:
-        A list of next possible states.
-    """
     rng = np.random.default_rng()
     return [state + rng.uniform(-0.1, 0.1, state.shape) for _ in range(5)]  # Example: 5 possible states
 
 
 def evaluate_state_with_timer(value_model, state, depth, start_time, time_limit):
-    """
-    Recursively evaluate a state with a time constraint.
-    
-    Args:
-        value_model: Trained MLPRegressor value function.
-        state: The current state as a numeric array.
-        depth: Remaining search depth.
-        start_time: Time when evaluation started.
-        time_limit: Maximum allowed time in seconds.
-        threshold: Stopping threshold for reward improvement.
 
-    Returns:
-        Predicted reward for the given state and depth.
-    """
     elapsed_time = time.time() - start_time
     if elapsed_time >= time_limit or depth == 0:
         # Base case: Evaluate state directly if depth is 0 or time is up
@@ -126,18 +104,6 @@ def evaluate_state_with_timer(value_model, state, depth, start_time, time_limit)
 
 # Modified find_optimal_depth to incorporate dynamic depth adjustment
 def find_optimal_depth_with_timer(value_model, max_depth, num_samples=100, time_limit=40):
-    """
-    Find the optimal search depth using a timer.
-
-    Args:
-        value_model: Trained MLPRegressor value function.
-        max_depth: Maximum depth to evaluate.
-        num_samples: Number of random states to evaluate per depth.
-        time_limit: Maximum allowed time in seconds.
-
-    Returns:
-        The optimal search depth.
-    """
    # Initialize data to track search depth over time
     time_per_depth = []
     depths = []
